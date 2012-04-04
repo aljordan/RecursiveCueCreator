@@ -1,0 +1,151 @@
+<!-- 
+  Copyright 2008 Alan Brent Jordan
+  This file is part of Recursive Cue Creator.
+
+  Recursive Cue Creator is free software: you can redistribute 
+  it and/or modify it under the terms of the GNU General Public License 
+  as published by the Free Software Foundation, version 3 of the License.
+
+  Recursive Cue Creator is distributed in the hope that it will
+  be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General 
+  Public License for more details.
+
+  You should have received a copy of the GNU General Public License along with 
+  Recursive Cue Creator.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Recursive Cue Creator Help</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+     <h2>Recursive Cue Creator Help</h2>
+    
+
+    <div>
+    <p>Recursive Cue Creator is a Java application that 
+    I wrote to generate cue sheets for use with the Cics Play memory player software 
+    (or any other music player that supports cue sheets). The application will start at any directory
+    you specify, and recursively drill through the directory structure, creating a separate cue sheet
+    for each directory that contains wav or flac files.  In the <b>Options</b> menu, you can specify 
+    whether to save all generated cue sheets to a single directory, or save each cue sheet within the 
+    directory where the music files are found.  If you save all cue sheets to a separate output directory,
+    all cue sheet entries will contain the full path to the music files.  If you choose to save to the
+    folders where the music files are stored, the entries to individual music files are relative and
+    do not include a full path.</p>
+
+    <p>In general, a person who rips their music collection to individual flac files would not need 
+    to use cue sheets because most media players will search your library and read the tags from 
+    the mp3 and flac files.  Cics Play, however, does not include this functionality, and is 
+    most conveniently used with cue sheets.</p>
+    
+    <p>This application is only useful if you have ripped your CDs to individual music files 
+    per song, and if you have a directory structure something like <br>
+    <b>Library Root\Artist 1\Album 1</b><br>
+    <b>Library Root\Artist 1\Album 2</b><br>
+    <b>Library Root\Artist 2\Album 1...</b><br>
+	or<br>
+    <b>Library Root\Genre\Artist 1\Album 1</b><br>
+    <b>Library Root\Genre\Artist 1\Album 2</b><br>
+    <b>Library Root\Genre\Artist 2\Album 1...</b><br>
+    </p>
+    
+    <p>The program currently supports WAV, FLAC, MP3, and APE file types.  You can choose to
+    read embedded tags in FLAC and MP3 files where available instead of having the application attempt to
+    discern the tags from the file system directory structure.</p>
+    
+    <p><b>Directions</b></p>
+    <ol>
+        <li>Press the "Set Library Root" button and browse to the root directory of your music library.</li>
+        <li>By default, the application will save a single cue sheet within each directory where music files are
+        found.  The danger here is that there is a possibility that you could overwrite an existing cue sheet.
+        To change this behavior, click on the "Use Custom Output Directory" check box, and browse to the 
+        folder where you wish to save all of the generated cue sheets.</li>
+        <li>Set options accordingly in the <b>Options</b> menu (see below).</li>
+        <li>Press the "Process Library" button.  The application will show status and notify you when it is complete.</li>
+    </ol>
+    
+    <p><b>Options</b></p>
+    <ul>
+        <li><b>Use Custom Output Directory</b>:  By default, the application will 
+        write one cue sheet in every directory under the library root that it finds
+        music files in.  This option will allow you to specify a single directory 
+        to write all resulting cue sheets to.  When this option is set, all cue 
+        sheets entries will contain the full path to each music file referenced
+        in the cue sheet.  Clicking on this option will bring up a Directory Browser
+        selection window with which you should choose the output directory where the
+        cue sheets will be written to.  Selecting the <b>Cancel</b> button in the
+        directory browser window will unset the option and restore the default
+        functionality of the application.</li>
+        <li><b>Use Embedded Tags when Processing FLAC and MP3</b>: By default, 
+        the application will determine the cue sheet information from the music 
+        library directory structure and file names.  Check this option if you
+        would like the application to attempt to use information from the tags
+        embedded in FLAC and MP3 files instead of folder and file names. This 
+        option will increase processing time quite a bit because some flac files
+        contain album art as well. If there is an error reading from the
+        embedded tags for a specific music file, or if the tag is not available,
+        the application will revert to using folder and file names to get information
+        for that music file.  Note that the application does not read embedded tags
+        from APE nor WAV files.</li>
+        <li><b>Title Tracks "Artist - Title" when Track Artist Differs</b>:
+        When reading embedded tags from FLAC and MP3 files, this option will
+        set the track title to <b>Artist - Title</b> only when the track artist
+        differs from the album artist.
+        </li>
+         <li><b>Substitute Composer for Genre when Genre is Classical</b>: This option
+         will write the Composer tag into the Genre field of the cue sheet when Composer
+         is available and the Genre is already set to "Classical".  This option is only
+         useful when reading embedded tags from FLAC and MP3 files.  Setting it will
+         have no effect otherwise.</li>
+         <li><b>Remove Track Number and File Extension from Track Title</b>:
+         This option will attempt to remove the trailing file extension and
+         leading track number from the <b>Track Title</b> field.  When this
+         option is used in conjunction with the <b>Use Embedded Tags when Processing
+         FLAC and MP3</b> option, only files that do not contain embedded tags
+         will be affected.
+         </li>
+         <li><b>Parse Artist and Album from a Single Parent Folder</b>:
+         Use this option if you set up your music library using <b>single folders</b>
+         named similar to <b>Artist Name - Album Name</b>.  When setting this option,
+         a dialog box will appear asking you to enter the characters that separate
+         artist from album title.  When you answer, make sure you enter blank spaces
+         as well as other seperator characters.  For example, lets say one of your
+         folders containing songs was named <b>Pat Metheny Group - The First Circle</b>,
+         you would enter " - " (space dash space without the quotes).  The application will
+         attempt to set the Artist and Album Title fields from the single folder name.
+         </li>
+         <li><b>Use One Parent Folder in Cue Sheet Name</b>: This option sets
+         the name of the cue sheet to the name of the folder where music files
+         are found.  When reading embedded tags in FLAC and MP3 files, the cue
+         sheet is named from the Album tag.
+         </li>
+         <li><b>Use Two Parent Folders in Cue Sheet Name</b>: This option sets
+         the name of the cue sheet to the name of the folder where music files
+         are found, prepended by that folder's parent folder.  This option is 
+         meant to be used when your library folder structure is <b>Artist \ 
+         Album \ Songs</b>.When reading embedded tags from FLAC and MP3 files, 
+         the cue sheet is named from the Artist tag plus the Album tag.
+         </li>
+         <li><b>Use Three Parent Folders in Cue Sheet Name</b>: If your library 
+         folder structure looks like <b>Library Root \ Genre \ Artist \ Album \
+         Songs</b>, the cue sheet names will be <b>Genre - Artist - Album.cue</b>,
+         hence alphabetized by genre - artist - album instead of artist - album.
+         When reading embedded tags from embedded FLAC and MP3 files, the cue
+         sheets are named from the tags instead of the file system folders.</li>
+   </ul>
+    
+    <p><b>Notes</b></p>
+    <ul>
+        <li>The application will work across mapped network drives, but will run slower.</li>
+	<li>When using a custom output directory, the file entries in the resulting cue 
+        sheets contain the full path to the file, so in this circumstance the cue sheets are 
+        generally not transportable across computers.</li>
+    </ul>
+
+    </div>  
+  </body>
+</html>
