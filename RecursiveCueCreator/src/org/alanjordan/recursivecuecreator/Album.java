@@ -1,4 +1,5 @@
 /*
+ * 
   Copyright 2008 Alan Brent Jordan
   This file is part of Recursive Cue Creator.
 
@@ -13,6 +14,7 @@
 
   You should have received a copy of the GNU General Public License along with 
   Recursive Cue Creator.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 
 package org.alanjordan.recursivecuecreator;
